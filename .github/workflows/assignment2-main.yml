@@ -32,7 +32,7 @@ jobs:
     - name: Build, tag, and push web application image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: assignment2-dev-webapp-repo
+        ECR_REPOSITORY: assignment2-webapp
         APPLICATION_IMAGE_TAG: latest
       run: |
         cd flaskapp/
@@ -42,7 +42,7 @@ jobs:
     - name: Build, tag, and push MySQL image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: assignment2-dev-mysql-repo
+        ECR_REPOSITORY: assignment2-mysql
         MYSQL_IMAGE_TAG: latest
       run: |
         cd flaskapp/
@@ -70,13 +70,13 @@ jobs:
 
     - name: Deploy MySQL to Kubernetes
       run: |
-        kubectl apply -f Kubernetes/manifests/mysql-deployment.yaml
-        kubectl apply -f Kubernetes/manifests/mysql-service.yaml
+        kubectl apply -f Kubernetes/mysql-deployment.yaml
+        kubectl apply -f Kubernetes/mysql-service.yaml
 
     - name: Deploy Web App to Kubernetes
       run: |
-        kubectl apply -f Kubernetes/manifests/web-app-service.yaml
-        kubectl apply -f Kubernetes/manifests/web-app-deployment.yaml
+        kubectl apply -f Kubernetes/web-app-service.yaml
+        kubectl apply -f Kubernetes/web-app-deployment.yaml
 
     - name: Verify Deployment
       run: |
