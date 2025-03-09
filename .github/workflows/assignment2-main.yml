@@ -1,9 +1,6 @@
 name: Deploy to ECR and Kubernetes
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -78,8 +75,8 @@ jobs:
 
     - name: Deploy Web App to Kubernetes
       run: |
-        kubectl apply -f Kubernetes/manifests/web-app-deployment.yaml
         kubectl apply -f Kubernetes/manifests/web-app-service.yaml
+        kubectl apply -f Kubernetes/manifests/web-app-deployment.yaml
 
     - name: Verify Deployment
       run: |
