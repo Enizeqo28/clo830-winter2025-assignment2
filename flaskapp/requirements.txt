@@ -1,0 +1,5 @@
+
+flask==3.0.3
+pymysql==1.1.0
+cryptography==42.0.7
+Werkzeug==3.0.3
