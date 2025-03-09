@@ -25,10 +25,19 @@ spec:
         - name: DBPORT
           value: "3306"
         - name: DBUSER
-          value: "root"
+          valueFrom:
+            secretKeyRef:
+              name: webapp-secret
+              key: DBUSER
         - name: DBPWD
-          value: "db_pass123"
+          valueFrom:
+            secretKeyRef:
+              name: webapp-secret
+              key: DBPWD
         - name: DATABASE
-          value: "employees"
+          valueFrom:
+            secretKeyRef:
+              name: webapp-secret
+              key: DATABASE
         - name: APP_COLOR
           value: "blue"
